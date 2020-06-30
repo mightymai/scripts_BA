@@ -6,7 +6,6 @@ import numpy as np
 import Levenshtein as L
 import epitran  
 import math
-from matplotlib.patches import Rectangle
 
 # this function sorts the confusion matrix (data) by the frequency of the words' occurences. 
 def sort_csv(data, submission, dat_val, heatmap_title, output_name, number, current,  colorbar_bool, folder_list='folder_list'):
@@ -140,17 +139,22 @@ def make_heatmap(ojdata, submission, dat_val, heatmap_title, output_name, number
 	if(colorbar_bool):
 		plt.tight_layout()
 		dat_new = sn.heatmap(dat, annot=False, xticklabels=False, yticklabels=False, cmap='gnuplot', mask=(dat==0), cbar_kws = cbar_kws, ax = ax, square=True)# font size
-		plt.subplots_adjust(left=-0.19, bottom=0.125)
+		dat_new.set_xlabel("X Label",fontsize=15)
+		dat_new.set_ylabel("Y Label",fontsize=15)
+		plt.subplots_adjust(top = 0.93, bottom=0.055, left=0.01)
 	else:
 		plt.tight_layout()
 		dat_new = sn.heatmap(dat, annot=False, xticklabels=False, yticklabels=False, cmap='gnuplot', mask=(dat==0), ax = ax, cbar = False, square=True)# font size
-		plt.subplots_adjust(left=-0.19, bottom=0.125)
+		dat_new.set_xlabel("X Label",fontsize=15)
+		dat_new.set_ylabel("Y Label",fontsize=15)
+		plt.subplots_adjust(top = 0.93, bottom=0.055, left=0.01)
 
-	dat_new.set_xlabel('predicted')
-	dat_new.set_ylabel('actual')
+	ax.figure.axes[-1].yaxis.label.set_size(15)
+	dat_new.set_xlabel('predicted',fontsize=15)
+	dat_new.set_ylabel('actual',fontsize=15)
 
 	figure = dat_new.get_figure() 
-	ax.set_title(heatmap_title)
+	ax.set_title(heatmap_title, fontsize=20)
 	#figure.show()
 	####################################   
 
@@ -177,6 +181,7 @@ def make_heatmap(ojdata, submission, dat_val, heatmap_title, output_name, number
 
 	#per = compute_per(folder_list, submission) 
 
+	''' NOT USED FOR FINAL PLOT
 	if(colorbar_bool):
 		unknown_per = unknown_percent(second_table)
 		mean_acc_text = ax.text(0, -0.075, str('mean accuracy = ' + str(acc)), fontsize=8, transform=ax.transAxes)
@@ -187,13 +192,15 @@ def make_heatmap(ojdata, submission, dat_val, heatmap_title, output_name, number
 		mean_acc_text = ax.text(0, -0.075, str('mean accuracy = ' + str(acc)), fontsize=8, transform=ax.transAxes)
 		all_acc_text = ax.text(0, -0.125, str('overall accuracy = ' + str(acc_2)), fontsize=8, transform=ax.transAxes)
 		unknown_per_text = ax.text(1, -0.075, str('unknown = ' + str(unknown_per)), fontsize=8, transform=ax.transAxes, horizontalalignment='right')
-
+	'''
 
 	figure.savefig(output_name + '.png', dpi=400)
 
+	''' NOT USED FOR FINAL PLOT
 	unknown_per_text.set_visible(False)
 	mean_acc_text.set_visible(False)
 	all_acc_text.set_visible(False)
+	'''
 
 def compute_per(folder_list_o, submission_o):
 

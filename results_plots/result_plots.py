@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 12})
 fig, ax = plt.subplots()
 x = [1,4,7]
 
@@ -11,9 +12,9 @@ cnn_u = [0.475, 0.366, 0.34]
 labels = ['100', '50', '20']
 
 ax.plot(x, ldl_u, linestyle='--', marker='o',color='#944de4', label='LDL normal semvecs')
-ax.plot(x, ldl_u_r, linestyle='--', marker='o',color='#290057', label='LDL random semvecs')
+ax.plot(x, ldl_u_r, linestyle='--', marker='v',color='#290057', label='LDL random semvecs')
 
-ax.plot(x, cnn_u, linestyle='--', marker='o',color='#ff7b00', label='CNN-CTC-LSTM')
+ax.plot(x, cnn_u, linestyle='solid', marker='*',color='#ff7b00', label='CNN-CTC-LSTM')
 ax.tick_params(axis=u'both', which=u'both',length=0)
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
@@ -41,7 +42,7 @@ x = [1,4,7]
 
 # ldl vs cnn-ctc-lstm
 # unbalanced 1. ldl, 2. cnn-ctc-lstm: 100, 50, 20
-ldl_b = [0.0234, 0.0101, 0.00315]
+ldl_b = [0.0234, 0.0101, 0.00315] 
 cnn_b = [0.521, 0.348, 0.253]
 
 ldl_b_r = [0.0561, 0.0256, 0.0099]
@@ -49,9 +50,9 @@ ldl_b_r = [0.0561, 0.0256, 0.0099]
 labels = ['100', '50', '20']
 
 ax.plot(x, ldl_b, linestyle='--', marker='o',color='#944de4', label='LDL normal semvecs')
-ax.plot(x, ldl_b_r, linestyle='--', marker='o',color='#290057', label='LDL random semvecs')
+ax.plot(x, ldl_b_r, linestyle='--', marker='v',color='#290057', label='LDL random semvecs')
 
-ax.plot(x, cnn_b, linestyle='--', marker='o',color='#ff7b00', label='CNN-CTC-LSTM')
+ax.plot(x, cnn_b, linestyle='solid', marker='*',color='#ff7b00', label='CNN-CTC-LSTM')
 ax.tick_params(axis=u'both', which=u'both',length=0)
 plt.grid(color='white', linewidth=2)
 # only y axis grid
@@ -81,13 +82,13 @@ exp_4_mean = [0.139, 0.118, 0.144, 0.127]
 exp_4_ov = [0.341, 0.308, 0.351, 0.317]
 exp_4_un = [0.455, 0.476, 0.433, 0.485]
 
-labels = ['original network', 'Experiment 4.1', 'Experiment 4.2', 'Experiment 4.3']
-ax.axhline(y=0.139, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle='--')
-ax.axhline(y=0.341, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle='--')
-ax.axhline(y=0.455, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle='--')
-ax.plot(x, exp_4_mean, marker='o',color='#00ff80', label='mean accuracy')
-ax.plot(x, exp_4_ov, marker='o',color='#3E8989', label='overall accuracy')
-ax.plot(x, exp_4_un, marker='o',color='#DB93B0', label='unknown')
+labels = ['original', '4.1', '4.2', '4.3']
+ax.axhline(y=0.139, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle=':')
+ax.axhline(y=0.341, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle=':')
+ax.axhline(y=0.455, xmin=0.0, xmax=1.0, color='#787878', linewidth=1, linestyle=':')
+ax.plot(x, exp_4_mean, marker='*',color='#00ff80', label='mean accuracy')
+ax.plot(x, exp_4_ov, marker='o',color='#3E8989', label='overall accuracy', linestyle='solid')
+ax.plot(x, exp_4_un, marker='v',color='#DB93B0', label='unknown', linestyle='solid')
 
 ax.set_ylim(bottom=0, top=1,)
 ax.tick_params(axis=u'both', which=u'both',length=0)
@@ -135,12 +136,12 @@ exp_3_un = [0.282, 0.434, 0.434]
 
 labels = ['threshold 100', 'threshold 50', 'threshold 20']
 
-ax.plot(x, exp_3_mean, marker='o',color='#00ff80', label='Experiment 3, mean accuracy')
-ax.plot(x, exp_1_mean, marker='o', linestyle=':',color='#00ff80', label='Experiment 1, mean accuracy')
-ax.plot(x, exp_3_ov, marker='o',color='#3E8989', label='Experiment 3, overall accuracy')
-ax.plot(x, exp_1_ov, marker='o', linestyle=':',color='#3E8989', label='Experiment 1, overall accuracy')
-ax.plot(x, exp_3_un, marker='o',color='#DB93B0', label='Experiment 3, unknown')
-ax.plot(x, exp_1_un, marker='o', linestyle=':',color='#DB93B0', label='Experiment 1, unknown')
+ax.plot(x, exp_3_mean, marker='*',color='#00ff80', label='Experiment 3, mean accuracy', linestyle='--')
+ax.plot(x, exp_1_mean, marker='*', color='#00ff80', label='Experiment 1, mean accuracy')
+ax.plot(x, exp_3_ov, marker='o',color='#3E8989', label='Experiment 3, overall accuracy', linestyle='--')
+ax.plot(x, exp_1_ov, marker='o', color='#3E8989', label='Experiment 1, overall accuracy')
+ax.plot(x, exp_3_un, marker='v',color='#DB93B0', label='Experiment 3, unknown', linestyle='--')
+ax.plot(x, exp_1_un, marker='v', color='#DB93B0', label='Experiment 1, unknown')
 ax.set_ylim(bottom=0, top=1,)
 
 ax.legend(loc='upper left', frameon=False)
@@ -186,12 +187,12 @@ exp_2_un = [0.341, 0.566, 0.673]
 
 labels = ['threshold 100', 'threshold 50', 'threshold 20']
 
-ax.plot(x, exp_2_mean, marker='o',color='#00ff80', label='Experiment 2, mean accuracy')
-ax.plot(x, exp_1_mean, marker='o', linestyle=':',color='#00ff80', label='Experiment 1, mean accuracy')
-ax.plot(x, exp_2_ov, marker='o',color='#3E8989', label='Experiment 2, overall accuracy')
-ax.plot(x, exp_1_ov, marker='o', linestyle=':',color='#3E8989', label='Experiment 1, overall accuracy')
-ax.plot(x, exp_2_un, marker='o',color='#DB93B0', label='Experiment 2, unknown')
-ax.plot(x, exp_1_un, marker='o', linestyle=':',color='#DB93B0', label='Experiment 1, unknown')
+ax.plot(x, exp_2_mean, marker='*',color='#00ff80', label='Experiment 2, mean accuracy', linestyle='--')
+ax.plot(x, exp_1_mean, marker='*',color='#00ff80', label='Experiment 1, mean accuracy')
+ax.plot(x, exp_2_ov, marker='o',color='#3E8989', label='Experiment 2, overall accuracy', linestyle='--')
+ax.plot(x, exp_1_ov, marker='o', color='#3E8989', label='Experiment 1, overall accuracy')
+ax.plot(x, exp_2_un, marker='v',color='#DB93B0', label='Experiment 2, unknown', linestyle='--')
+ax.plot(x, exp_1_un, marker='v', color='#DB93B0', label='Experiment 1, unknown')
 
 ax.set_ylim(bottom=0, top=1,)
 
@@ -223,9 +224,9 @@ exp_1_un = [0.283, 0.455, 0.457]
 
 labels = ['threshold 100', 'threshold 50', 'threshold 20']
 
-ax.plot(x, exp_1_mean, marker='o',color='#00ff80', label='mean accuracy')
+ax.plot(x, exp_1_mean, marker='*',color='#00ff80', label='mean accuracy')
 ax.plot(x, exp_1_ov, marker='o',color='#3E8989', label='overall accuracy')
-ax.plot(x, exp_1_un, marker='o',color='#DB93B0', label='unknown')
+ax.plot(x, exp_1_un, marker='v',color='#DB93B0', label='unknown')
 ax.set_ylim(bottom=0, top=1,)
 
 ax.legend(loc='upper left', frameon=False)

@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import matplotlib.colors as mcolors
 import math
-
+plt.rcParams.update({'font.size': 11})
 fig = plt.figure(figsize=(10,5))
 #fig.suptitle('model accuracy in experiment 4.1')
 
